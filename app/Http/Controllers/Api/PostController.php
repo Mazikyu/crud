@@ -4,32 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Support\Str;
-use App\DataTables\PostsDataTable;
 use App\Http\Requests\PostCreateUpdateRequest;
 use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
 
-    /**
-     * Viewing index with Data Table 
-     * 
-     * GET request to render Data Table inside index
-     * @param PostsDataTable
-     * @return Json
-     */
+
     public function index()
     {
         return response()->json(Post::all());
     }
 
-    /**
-     * Updating Status directly in index view
-     * 
-     * PATCH request with success response 
-     * @param Post $post
-     * @return Json
-     */
     public function status(Post $post)
     {
         $post->status = ! $post->status;
@@ -126,15 +112,7 @@ class PostController extends Controller
     }
 
 
-    /**
-     * Delete one post 
-     * 
-     * DELETE request
-     * User deletes one single post with success message afterwards
-     * 
-     * @param Post $post
-     * @return Json
-     */
+
     public function destroy(Post $post)
     {
         // delete img from folder as well
